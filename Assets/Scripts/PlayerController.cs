@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // Input System 패키지 사용
 
-public class PlayerControler : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRigidbody;
+    public Rigidbody playerRigidbody;
     public float speed = 8f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,7 +13,7 @@ public class PlayerControler : MonoBehaviour
     {
         // 게임 오브젝트에서 Rigidbody 컴포넌트를 찾아 playerRigidbody에 할당
         playerRigidbody = GetComponent<Rigidbody>();
-        
+
     }
 
     // Update is called once per frame
@@ -58,5 +58,13 @@ public class PlayerControler : MonoBehaviour
 
         // Rigidbody의 속도에 newVelocity를 할당
         playerRigidbody.linearVelocity = newVelocity;
+    }
+
+    public void Die()
+    {
+        // 자신의 게임 오브젝트를 비활성화
+        gameObject.SetActive(false);
+        // 가져온 GameManager 오브젝트의 EndGame() 메서드 실행
+        //gameObject.EndGame();
     }
 }
